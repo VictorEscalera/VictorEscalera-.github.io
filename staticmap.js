@@ -5,7 +5,7 @@ async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
     // Short namespaces can be used.
     map = new Map(document.getElementById("map"), {
-        center: { lat: 21.848164, lng: -102.713196 },
+        center: { lat: 21.81458544402349, lng: -102.7699510190378 }, 
         zoom: 15,
     });
 }
