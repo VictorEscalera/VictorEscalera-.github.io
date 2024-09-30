@@ -1,13 +1,27 @@
 let map;
-// initMap is now async
+
 async function initMap() {
-    // Request libraries when needed, not in the script tag.
-    const { Map } = await google.maps.importLibrary("maps");
-    // Short namespaces can be used.
-    map = new Map(document.getElementById("map"), {
-        center: { lat: 21.81458544402349, lng: -102.7699510190378 }, 
-        zoom: 15,
-    });
+  // The location of Uluru
+  const position = { lat: 21.814336409916567, lng: -102.7693394789043};
+  // Request needed libraries.
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  // The map, centered at Uluru
+  map = new Map(document.getElementById("map"), {
+    zoom: 18,
+    center: position,
+    mapId: "DEMO_MAP_ID",
+  });
+
+  // The marker, positioned at Uluru
+  const marker = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    title: "Uluru",
+  });
 }
 
 initMap();
+    
