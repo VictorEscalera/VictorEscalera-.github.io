@@ -1,36 +1,17 @@
 let map;
 
-async function initMap() {
-  // The location of Uluru
-  const position = { lat: 21.814336409916567, lng: -102.7693394789043};
-  // Request needed libraries.
-
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-  // The map, centered at Uluru
-  map = new Map(document.getElementById("map"), {
-    zoom: 18,
-    center: position,
-    mapId: "DEMO_MAP_ID",
-  });
-
-  // The marker, positioned at Uluru
-  const marker = new AdvancedMarkerElement({
-    map: map,
-    position: position,
-    title: "Uluru",
-  });
-}
-
-initMap();
-    
 function initMap() {
     const myLatLng = { lat: 21.81428552567272, lng: -102.76898188728283 };
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 16,
         center: myLatLng,
     });
+
+    //servicio y redenrizador de direcciones (ruta)
+    direccionService = new google.maps.DirectionsService();
+    direccionRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+
     const image =
         "./cara-de-venado.png";  //CREAMOS LA CONSTANTE CON LA RUTA DE LA IMAGEN
     new google.maps.Marker({
@@ -80,7 +61,7 @@ function initMap() {
                     map,
                     icon: {
                         url: image, // Mantener el ícono personalizado
-                        scaledSize: new google.maps.Size(40, 40),
+                        scaledSize: new google.maps.Size(40,40),
 
                     },
                     title: place.name,
@@ -98,13 +79,57 @@ function initMap() {
                 } else {
                     bounds.extend(place.geometry.location);
                 }
+                //clacular y mostrar la ruta
+                calulateAndDisplayRoute(place.geometry.location)
             });
             map.fitBounds(bounds);
         }
-    )
+        
+    );
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const pos = {
+                    lay: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+                map.setCenter(pos);
+            },
+            () => {
+                console.log("Error obteniendo la ubicacion actual.");
+            }
+        );
+    }
+
+    // Función para calcular y mostrar la ruta desde la ubicación actual hasta el lugar seleccionado
+function calculateAndDisplayRoute(destination) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const origin = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+            };
+
+            directionsService.route(
+                {
+                    origin: origin,
+                    destination: destination,
+                    travelMode: google.maps.TravelMode.DRIVING, // Puedes cambiarlo a WALKING, BICYCLING, etc.
+                },
+                (response, status) => {
+                    if (status === "OK") {
+                        directionsRenderer.setDirections(response);
+                    } else {
+                        console.log("Direcciones fallidas: " + status);
+                    }
+                }
+            );
+        });
+    }
+}
+
 
 
 
 
 }
-
