@@ -7,15 +7,12 @@ function initMap() {
         center: myLatLng,
     });
 
-<<<<<<< HEAD
     //Servicio y renderizador de direcciones (ruta)
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer();
-=======
     //servicio y redenrizador de direcciones (ruta)
     direccionService = new google.maps.DirectionsService();
     direccionRenderer = new google.maps.DirectionsRenderer();
->>>>>>> 220558d2a53d986231e84ac48997b18b109095ff
     directionsRenderer.setMap(map);
 
     const image =
@@ -67,11 +64,8 @@ function initMap() {
                     map,
                     icon: {
                         url: image, // Mantener el ícono personalizado
-<<<<<<< HEAD
                         scaledSize: new google.maps.Size(40, 40),
-=======
                         scaledSize: new google.maps.Size(40,40),
->>>>>>> 220558d2a53d986231e84ac48997b18b109095ff
 
                     },
                     title: place.name,
