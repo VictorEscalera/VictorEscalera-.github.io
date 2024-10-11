@@ -1,50 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mapa estatico</title>
-    <script src="staticMap.js"></script>
-    <link rel="stylesheet" href="staticMap.css">
+    <script src="staticmap.js"></script>
     <style>
-        #map {
+        #map{
             height: 500px;
             width: 100%;
         }
-        
-        #pac-input {
-            width: 100%;
-            height: 45px;
-            margin: 30px auto;
-            margin-left: -10px;
-            padding: 12px 10px;
-            font-size: 16px;
-            border-radius: 25px;
-            border: none;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            outline: none;
-            background-color: #f0f0f0;
-        }
-    
-        #pac-input::placeholder {
-            color: #888888;
-            font-style: italic;
-        }
-    
-        #pac-input:focus {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            background-color: #ffffff;
-        }
     </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Estatico</title>
 </head>
 <body>
-    <h1> Mapa Estatico</h1>
-    <input id="pac-input" class="controls" type="text" placeholder="buscar lugares">
-    <div id="map"></div>
+    <h1>Mapa Estatico</h1>
     <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3pKkj-H_bOea9hkxpuyobPiOyuWDCHeY&libraries=places&callback=initMap">
-
     
     </script>
 
@@ -83,6 +54,5 @@
         background-color: #ffffff;
     }
      </style>
-
 </body>
 </html>
