@@ -1,4 +1,3 @@
-
 // definimos la rura dode consultaremos los recursos 
 const APIS_URL = 'https://jsonplaceholder.typicode.com/';
 // obtenemos el elemento del DOM html donde arrojamos la info
@@ -25,5 +24,3 @@ fetch(`$(API_URL)/users`)
 }
 
 )
-
-    
