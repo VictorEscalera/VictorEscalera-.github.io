@@ -9,11 +9,11 @@ fetch(`${API_URL}/comments`)
     .then((response) => response.json())
     .then((comments) => {
 
-        const limitedComments = comments.slice(0, 30);
+        const limitedComments = comments.slice(0, 10);
         
         limitedComments.forEach((comment) => {
             let element = document.createElement('li');
-            element.innerHTML = `${comment.email} comentó:<br>${comment.body}`;
+            element.innerHTML = `${comment.email}<br>${comment.body}`;
             ol.appendChild(element);
         });
         HTMLResponse.appendChild(ol);
